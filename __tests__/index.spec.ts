@@ -2,7 +2,7 @@ import { describe, expect, fn, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import type { PiniaPluginContext } from 'pinia'
 import { createPinia, defineStore } from 'pinia'
-import { persist } from '../dist/index'
+import { persist } from '../src/index'
 
 describe('Persist', () => {
   it('persist is a function', () => {
@@ -75,6 +75,20 @@ describe('Persist', () => {
     expect(store.test).toBe('bar')
   })
 
+  it('deep merge to sync state', () => {
+    window.localStorage.clear()
+    window.localStorage.setItem('pinia_foo', JSON.stringify({ name: 'dewey', hobbies: ['code', 'movie'] }))
+    const testStore = defineStore('foo', {
+      state: () => ({ age: 24, hobbies: ['code', 'cube'] }),
+    })
+    const pinia = createPinia()
+    pinia.use(persist())
+
+    mount({ template: 'none' }, { global: { plugins: [pinia] } })
+    const store = testStore(pinia)
+    expect(store.$state).toStrictEqual({ name: 'dewey', age: 24, hobbies: ['code', 'cube', 'movie'] })
+  })
+
   it('sync storage data when state change', (done) => {
     window.localStorage.clear()
     const testStore = defineStore('foo', {
@@ -103,16 +117,17 @@ describe('Persist', () => {
   })
 
   it('not to sync state when set overwrite = true', () => {
-    window.localStorage.setItem('pinia_foo', JSON.stringify({ test: 'bar' }))
+    window.localStorage.clear()
+    window.localStorage.setItem('pinia_foo', JSON.stringify({ name: 'dewey', hobbies: ['code', 'movie'] }))
     const testStore = defineStore('foo', {
-      state: () => ({ test: 'foo' }),
+      state: () => ({ age: 24, hobbies: ['code', 'cube'] }),
     })
     const pinia = createPinia()
     pinia.use(persist({ overwrite: true }))
 
     mount({ template: 'none' }, { global: { plugins: [pinia] } })
     const store = testStore(pinia)
-    expect(store.test).toBe('foo')
+    expect(store.$state).toStrictEqual({ age: 24, hobbies: ['code', 'cube'] })
   })
 
   it('custom prefix', () => {
