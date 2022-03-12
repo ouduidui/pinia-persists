@@ -2,7 +2,7 @@ import { describe, expect, fn, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import type { PiniaPluginContext } from 'pinia'
 import { createPinia, defineStore } from 'pinia'
-import { persist } from '../src/index'
+import { persist } from '../dist/index'
 
 describe('Persist', () => {
   it('persist is a function', () => {
