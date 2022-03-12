@@ -36,8 +36,5 @@ jobs:
       - name: Lint
         run: nr lint --if-present
 
-      - name: Dev
-        run: nr dev --if-present
-
       - name: Test
         run: nr test --if-present
