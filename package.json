@@ -1,0 +1,33 @@
+{
+  "name": "pinia-persists",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ouduidui/pinia-persists.git"
+  },
+  "author": {
+    "name": "dewey ou",
+    "email": "oushihao97@gmail.com"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --env.NODE_ENV development",
+    "build": "tsup --env.NODE_ENV production",
+    "test": "vitest"
+  },
+  "bugs": {
+    "url": "https://github.com/ouduidui/pinia-persists/issues"
+  },
+  "homepage": "https://github.com/ouduidui/pinia-persists#readme",
+  "devDependencies": {
+    "@ouduidui/eslint-config-ts": "^0.0.2",
+    "eslint": "^8.11.0",
+    "tsup": "^5.12.1",
+    "typescript": "^4.6.2",
+    "vitest": "^0.6.0"
+  }
+}
