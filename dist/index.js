@@ -26,17 +26,44 @@ var src_exports = {};
 __export(src_exports, {
   default: () => src_default
 });
-
-// src/test.ts
-var msg = "HelloWorld";
-var getMessage = () => msg;
-
-// src/index.ts
-var msg2 = "HelloWorld";
-var src_default = {
-  msg: msg2,
-  getMessage
-};
+var __DEV__ = true;
+function persist(options = {}) {
+  const storage = options.storage || window && window.localStorage;
+  if (!storage)
+    throw new ReferenceError('"window" is undefined.');
+  const prefix = options.prefix || "pinia";
+  const overwrite = options.overwrite || false;
+  return function({ store }) {
+    const key = `${prefix}_${store.$id}`;
+    const storageResult = getItem(key, storage);
+    if (!storageResult || overwrite)
+      setItem(key, store.$state, storage);
+    else
+      store.$patch(storageResult);
+    store.$subscribe(() => {
+      setItem(key, store.$state, storage);
+    });
+  };
+}
+function getItem(key, storage) {
+  const value = storage.getItem(key);
+  try {
+    if (typeof value === "string")
+      return JSON.parse(value);
+    else if (typeof value === "object")
+      return value;
+    else
+      return null;
+  } catch (err) {
+    if (__DEV__)
+      throw err;
+    return null;
+  }
+}
+function setItem(key, state, storage) {
+  return storage.setItem(key, JSON.stringify(state));
+}
+var src_default = persist;
 module.exports = __toCommonJS(src_exports);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {});

@@ -14,10 +14,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "lib": ["esnext", "dom"],
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "lib": ["esnext", "dom"]
   },
   "exclude": ["dist", "node_modules"]
 }
