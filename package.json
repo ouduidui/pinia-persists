@@ -1,8 +1,8 @@
 {
   "name": "pinia-persists",
   "version": "0.0.1",
-  "description": "",
-  "keywords": [],
+  "description": "a pinia plugin for state persist.",
+  "keywords": ["pinia", "pinia plugin", "persist"],
   "license": "MIT",
   "repository": {
     "type": "git",
