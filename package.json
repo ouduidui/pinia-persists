@@ -1,8 +1,12 @@
 {
   "name": "pinia-persists",
-  "version": "0.0.1",
+  "version": "0.0.3-beta.1",
   "description": "a pinia plugin for state persist.",
-  "keywords": ["pinia", "pinia plugin", "persist"],
+  "keywords": [
+    "pinia",
+    "pinia plugin",
+    "persist"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,12 +16,16 @@
     "name": "dewey ou",
     "email": "oushihao97@gmail.com"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "tsup src/index.ts --sourcemap --watch --clean",
     "build": "tsup src/index.ts --dts --minify --clean",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "npx bumpp --commit --push --tag"
   },
   "bugs": {
     "url": "https://github.com/ouduidui/pinia-persists/issues"
@@ -27,6 +35,7 @@
     "@ouduidui/eslint-config-ts": "^0.0.2",
     "@types/node": "^17.0.21",
     "@vue/test-utils": "^2.0.0-rc.17",
+    "bumpp": "^7.1.1",
     "eslint": "^8.11.0",
     "jsdom": "^19.0.0",
     "pinia": "^2.0.11",
