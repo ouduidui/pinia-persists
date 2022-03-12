@@ -1,8 +1,6 @@
 import type { PiniaPluginContext } from 'pinia'
 
-const __DEV__ = process.env.NODE_ENV !== 'production'
-
-interface Storage {
+export interface Storage {
   readonly length?: number
   clear?: () => void
   getItem: (key: string) => string | null
@@ -12,13 +10,13 @@ interface Storage {
   [name: string]: any
 }
 
-interface PersistOptions {
+export interface PersistOptions {
   prefix?: string
   storage?: Storage
   overwrite?: boolean
 }
 
-function persist(options: PersistOptions = {}) {
+export function persist(options: PersistOptions = {}) {
   const storage = options.storage || (window && window.localStorage)
 
   if (!storage)
@@ -51,7 +49,6 @@ function getItem(key: string, storage: Storage): Record<string, any> | null {
     else return null
   }
   catch (err) {
-    if (__DEV__) throw err
     return null
   }
 }
@@ -59,5 +56,3 @@ function getItem(key: string, storage: Storage): Record<string, any> | null {
 function setItem(key: string, state: unknown, storage: Storage) {
   return storage.setItem(key, JSON.stringify(state))
 }
-
-export default persist

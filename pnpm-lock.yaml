@@ -2,7 +2,6 @@ lockfileVersion: 5.3
 
 specifiers:
   '@ouduidui/eslint-config-ts': ^0.0.2
-  '@pinia/testing': ^0.0.9
   '@types/node': ^17.0.21
   '@vue/test-utils': ^2.0.0-rc.17
   eslint: ^8.11.0
@@ -13,16 +12,13 @@ specifiers:
   vitest: ^0.6.0
   vue: ^3.2.31
 
-dependencies:
-  pinia: 2.0.11_typescript@4.6.2+vue@3.2.31
-
 devDependencies:
   '@ouduidui/eslint-config-ts': 0.0.2_eslint@8.11.0+typescript@4.6.2
-  '@pinia/testing': 0.0.9_pinia@2.0.11+vue@3.2.31
   '@types/node': 17.0.21
   '@vue/test-utils': 2.0.0-rc.17_vue@3.2.31
   eslint: 8.11.0
   jsdom: 19.0.0
+  pinia: 2.0.11_typescript@4.6.2+vue@3.2.31
   tsup: 5.12.1_typescript@4.6.2
   typescript: 4.6.2
   vitest: 0.6.0_jsdom@19.0.0
@@ -142,18 +138,6 @@ packages:
       - eslint
       - supports-color
       - typescript
-    dev: true
-
-  /@pinia/testing/0.0.9_pinia@2.0.11+vue@3.2.31:
-    resolution: {integrity: sha512-JG+th+BENR89/7vpRxafDApU56AECZ9m+THd8IKsgomyRXaiRRdwt0BLbjStTkksnoNZfZBCz5NszykyNxz/sQ==}
-    peerDependencies:
-      pinia: ~2.0.7
-    dependencies:
-      pinia: 2.0.11_typescript@4.6.2+vue@3.2.31
-      vue-demi: 0.12.1_vue@3.2.31
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -363,7 +347,7 @@ packages:
 
   /@vue/devtools-api/6.1.0:
     resolution: {integrity: sha512-1FtbxEEHN70WGJl1b/h8nLmyN+tOHONNsNLvgVEXF/L/vBrRqQZ0kF+dev1YAz3OtxsQ1sV/vPLKwRlq1axrgg==}
-    dev: false
+    dev: true
 
   /@vue/reactivity-transform/3.2.31:
     resolution: {integrity: sha512-uS4l4z/W7wXdI+Va5pgVxBJ345wyGFKvpPYtdSgvfJfX/x2Ymm6ophQlXXB6acqGHtXuBqNyyO3zVp9b1r0MOA==}
@@ -2402,7 +2386,7 @@ packages:
       typescript: 4.6.2
       vue: 3.2.31
       vue-demi: 0.12.1_vue@3.2.31
-    dev: false
+    dev: true
 
   /pirates/4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
@@ -2983,6 +2967,7 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.31
+    dev: true
 
   /vue/3.2.31:
     resolution: {integrity: sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw==}
