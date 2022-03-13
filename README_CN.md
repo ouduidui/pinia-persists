@@ -10,7 +10,7 @@
 <p align="center">
   <a href="./README.md">English</a> 
   <span style="padding: 0 8px">|</span>
-  <a href="./README_CN.md">简体中文</a>
+  <spawn>简体中文</spawn>
 </p>
 
 ## 使用

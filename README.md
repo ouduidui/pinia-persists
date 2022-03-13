@@ -8,7 +8,7 @@
 <a href="https://www.npmjs.com/package/pinia-persists"><img src="https://img.shields.io/npm/v/pinia-persists?label=" alt="NPM version"></a></p>
 
 <p align="center">
-  <a href="./README.md">English</a> 
+  <span>English</span> 
   <span style="padding: 0 8px">|</span>
   <a href="./README_CN.md">简体中文</a>
 </p>
