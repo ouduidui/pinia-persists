@@ -1,6 +1,6 @@
 {
   "name": "pinia-persists",
-  "version": "0.0.3-beta.2",
+  "version": "0.1.0",
   "description": "a pinia plugin for state persist.",
   "keywords": [
     "pinia",
