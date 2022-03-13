@@ -1,7 +1,7 @@
 <h1 align="center"><samp>Pinia Persists</samp></h1>
 
 <p align="center">
-  <samp>A pinia plugin for state persist.</samp>
+  <samp>一个关于数据持久化的Pinia插件</samp>
 </p>
 
 <p align="center">
@@ -13,16 +13,15 @@
   <a href="./README_CN.md">简体中文</a>
 </p>
 
+## 使用
 
-## Usage
-
-### Install
+### 安装
 
 ```bash
 npm i pinia-persists
 ```
 
-### Use
+### 使用
 
 ```javascript
 import { persist } from 'pinia-persists'
@@ -30,23 +29,23 @@ import { createPinia } from 'pinia'
 
 const pinia = createPinia()
 
-// pinia use plugin
+// pinia通过use安装插件
 pinia.use(persist({ /* options */ }))
 
 app.use(pinia)
 ```
 
-## Options
+## Options选项
 
 ### prefix
 
-- type: String
-- optional, default "pinia"
-- it is the prefix of the key to store the persisted state under, such as the store id is "test", that store key is "pinia_test" by default.
+- 类型： String
+- 可选， 默认为 "pinia"
+- 这是关于存储持久化数据的key值前缀。比如你的store id为 `test` ，那默认情况下这个key会是`pinia_test`。
 
 ### storage
 
-- type: Object
+- 类型： Object
 
   ```typescript
   interface Storage {
@@ -60,14 +59,14 @@ app.use(pinia)
   }
   ```
 
-- optional, default  `window.localStorage`
-- it is the storage for state persist,  you can choose localStorage, sessionStorage or your custom storage.
+- 可选， 默认为  `window.localStorage`
+- 这是设置存储持久化数据的容器，你可以选择 `localStorage`、`sessionStorage`  或者自定义容器。
 
 ### overwrite
 
-- type: Boolean
-- optional, default `false`
-- when app first loader or refresh, whether to overwrite the existing state with the output from state directly, instead of merging the two objects with deep merge.
+- 类型： Boolean
+- 可选， 默认为`false`
+- 当app首次加载或者刷新时，是否覆盖已经存在的持久化数据，而不是对两个数据进行对比合并。
 
 
 ## License
