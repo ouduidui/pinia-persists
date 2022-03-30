@@ -1,20 +1,6 @@
 import type { PiniaPluginContext } from 'pinia'
-
-export interface Storage {
-  readonly length?: number
-  clear?: () => void
-  getItem: (key: string) => string | null
-  key?: (index: number) => string | null
-  removeItem?: (key: string) => void
-  setItem: (key: string, value: string) => void
-  [name: string]: any
-}
-
-export interface PersistOptions {
-  prefix?: string
-  storage?: Storage
-  overwrite?: boolean
-}
+import { isObject, mergeArrayWithDedupe } from './helper'
+import type { PersistOptions, Storage } from './types'
 
 export function persist(options: PersistOptions = {}) {
   const storage = options.storage || (window && window.localStorage)
@@ -55,9 +41,6 @@ function getItem(key: string, storage: Storage): Record<string, any> | null {
 function setItem(key: string, state: unknown, storage: Storage) {
   return storage.setItem(key, JSON.stringify(state))
 }
-
-const isObject = (val: unknown) => val && typeof val === 'object'
-const mergeArrayWithDedupe = (a: any[], b: any[]) => Array.from(new Set([...a, ...b]))
 
 function deepMerge(
   oldObj: Record<string | number | symbol, any>,
