@@ -35,7 +35,7 @@
     "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@ouduidui/eslint-config-ts": "^0.0.2",
+    "@ouduidui/eslint-config-ts": "^0.1.1",
     "@types/node": "^17.0.23",
     "@vue/test-utils": "^2.0.0-rc.17",
     "eslint": "^8.12.0",
