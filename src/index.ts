@@ -1,4 +1,5 @@
 import type { PiniaPluginContext } from 'pinia'
+import { watch } from 'vue'
 import { isObject, mergeArrayWithDedupe } from './helper'
 import type { PersistOptions, Storage } from './types'
 
@@ -19,7 +20,7 @@ export function persist(options: PersistOptions = {}) {
     else
       store.$patch(deepMerge(store.$state, storageResult))
 
-    store.$subscribe(() => {
+    watch(store.$state, () => {
       setItem(key, store.$state, storage)
     })
   }

@@ -116,6 +116,38 @@ describe('Persist', () => {
     })
   })
 
+  it('sync storage data when state change', (done) => {
+    window.localStorage.clear()
+    const testStore = defineStore('foo', {
+      state: () => ({
+        test: [1],
+      }),
+      actions: {
+        add(val: number) {
+          this.test.push(val)
+        },
+        remove(val: number) {
+          this.test = this.test.filter(item => item !== val)
+        },
+      },
+    })
+    const pinia = createPinia()
+    pinia.use(persist())
+
+    mount({ template: 'none' }, { global: { plugins: [pinia] } })
+    const store = testStore(pinia)
+    expect(store.test).toStrictEqual([1])
+    store.add(2)
+    expect(store.test).toStrictEqual([1, 2])
+    Promise.resolve().then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({ test: [1, 2] }))
+      store.remove(2)
+    }).then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({ test: [1] }))
+      done()
+    })
+  })
+
   it('not to sync state when set overwrite = true', () => {
     window.localStorage.clear()
     window.localStorage.setItem('pinia_foo', JSON.stringify({ name: 'dewey', hobbies: ['code', 'movie'] }))
