@@ -30,14 +30,17 @@ interface Storage {
 interface PersistOptions {
     /**
      * it is the prefix of the key to store the persisted state under, such as the store id is "test", that store key is "pinia_test" by default.
+     * @default pinia
      */
     prefix?: string;
     /**
      * it is the storage for state persist,  you can choose localStorage, sessionStorage or your custom storage.
+     * @default window.localStorage
      */
     storage?: Storage;
     /**
      * when app first loader or refresh, whether to overwrite the existing state with the output from state directly, instead of merging the two objects with deep merge.
+     * @default false
      */
     overwrite?: boolean;
 }

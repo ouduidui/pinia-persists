@@ -216,4 +216,69 @@ describe('Persist', () => {
       done()
     })
   })
+
+  it('no strict patch', (done) => {
+    window.localStorage.clear()
+    window.localStorage.setItem('pinia_foo', JSON.stringify({
+      test: [
+        { id: 1, name: 'foo' },
+      ],
+    }))
+
+    const testStore = defineStore('foo', {
+      state: () => ({
+        test: [
+          { id: 1, name: 'foo' },
+        ],
+      }),
+      actions: {
+        add(item: { id: number; name: string }) {
+          this.test.push(item)
+        },
+        remove() {
+          this.test = this.test.filter(item => item.id !== 1)
+        },
+      },
+    })
+    const pinia = createPinia()
+    pinia.use(persist())
+
+    mount({ template: 'none' }, { global: { plugins: [pinia] } })
+    const store = testStore(pinia)
+    expect(store.test).toStrictEqual([
+      { id: 1, name: 'foo' },
+    ])
+
+    Promise.resolve().then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({
+        test: [
+          { id: 1, name: 'foo' },
+        ],
+      }))
+      store.add({ id: 2, name: 'bar' })
+    }).then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({
+        test: [
+          { id: 1, name: 'foo' },
+          { id: 2, name: 'bar' },
+        ],
+      }))
+      store.remove()
+    }).then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({
+        test: [
+          { id: 2, name: 'bar' },
+        ],
+      }))
+      store.add({ id: 2, name: 'bar' })
+    }).then(() => {
+      expect(window.localStorage.getItem('pinia_foo')).toBe(JSON.stringify({
+        test: [
+          { id: 2, name: 'bar' },
+          { id: 2, name: 'bar' },
+        ],
+      }))
+      done()
+    })
+  })
 })
